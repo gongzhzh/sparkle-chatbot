@@ -8,12 +8,12 @@
     "update": "git pull origin main && npm run db-migrate && npm run db-types",
     "prepare": "husky install",
     "clean": "npm run lint:fix && npm run format:write",
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "next lint --fix",
-    "analyze": "ANALYZE=true npm run build",
+    "lint:fix": "eslint --fix .",
+    "analyze": "ANALYZE=true npm run build --webpack",
     "preview": "next build && next start",
     "type-check": "tsc --noEmit",
     "format:write": "prettier --write \"{app,lib,db,components,context,types}/**/*.{ts,tsx}\" --cache",
@@ -77,7 +77,7 @@
     "langchain": "^0.0.213",
     "lucide-react": "^0.292.0",
     "mammoth": "^1.6.0",
-    "next": "^14.1.0",
+    "next": "^16.0.2-canary.0",
     "next-i18n-router": "^5.2.0",
     "next-pwa": "5.6.0",
     "next-themes": "^0.2.1",
@@ -125,5 +125,22 @@
     "tailwindcss-animate": "^1.0.7",
     "ts-node": "^10.9.2",
     "typescript": "^5"
-  }
+  },
+  "description": "The open-source AI chat app for everyone.",
+  "main": "i18nConfig.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gongzhzh/sparkle-chatbot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/gongzhzh/sparkle-chatbot/issues"
+  },
+  "homepage": "https://github.com/gongzhzh/sparkle-chatbot#readme"
 }

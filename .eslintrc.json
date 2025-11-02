@@ -6,6 +6,7 @@
     "prettier",
     "plugin:tailwindcss/recommended"
   ],
+  "ignorePatterns": ["public/*"],
   "plugins": ["tailwindcss"],
   "rules": {
     "tailwindcss/no-custom-classname": "off"

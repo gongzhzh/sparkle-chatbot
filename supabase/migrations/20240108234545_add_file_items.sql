@@ -1,8 +1,8 @@
 --------------- FILE ITEMS ---------------
-
+set local search_path = public, extensions;
 create table file_items (
   -- ID
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
 
   -- RELATIONSHIPS
   file_id UUID NOT NULL REFERENCES files(id) ON DELETE CASCADE,
@@ -17,8 +17,8 @@ create table file_items (
 
   -- REQUIRED
   content TEXT NOT NULL,
-  local_embedding vector(384), -- 384 works for local w/ Xenova/all-MiniLM-L6-v2
-  openai_embedding vector(1536), -- 1536 for OpenAI
+  local_embedding extensions.vector(384), -- 384 works for local w/ Xenova/all-MiniLM-L6-v2
+  openai_embedding extensions.vector(1536), -- 1536 for OpenAI
   tokens INT NOT NULL
 );
 

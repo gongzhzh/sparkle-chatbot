@@ -19,7 +19,7 @@ export default async function Login({
 }: {
   searchParams: { message: string }
 }) {
-  const cookieStore = cookies()
+  const cookieStore = await cookies()
   const supabase = createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -54,7 +54,7 @@ export default async function Login({
     const email = formData.get("email") as string
     const password = formData.get("password") as string
     const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = await createClient(cookieStore)
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -120,7 +120,7 @@ export default async function Login({
     }
 
     const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = await createClient(cookieStore)
 
     const { error } = await supabase.auth.signUp({
       email,
@@ -145,10 +145,10 @@ export default async function Login({
   const handleResetPassword = async (formData: FormData) => {
     "use server"
 
-    const origin = headers().get("origin")
+    const origin = (await headers()).get("origin")
     const email = formData.get("email") as string
     const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
+    const supabase = await createClient(cookieStore)
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${origin}/auth/callback?next=/login/password`
